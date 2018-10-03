@@ -41,3 +41,5 @@ erl_crash.dump
 authority-*.tar
 
 mock_data.txt
+
+state.txt

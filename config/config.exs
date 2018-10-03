@@ -3,8 +3,8 @@
 use Mix.Config
 
 config :pinboard, Pinboard.Mailer,
-  adapter: Bamboo.SendGridAdapter,
-  # adapter: Bamboo.LocalAdapter,
+  # adapter: Bamboo.SendGridAdapter,
+  adapter: Bamboo.LocalAdapter,
   api_key: System.get_env("API_KEY")
 
 # This configuration is loaded before any dependency and is restricted

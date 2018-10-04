@@ -5,10 +5,9 @@ defmodule Pinboard.MixProject do
     [
       app: :pinboard,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps(),
-      escript: escript()
+      deps: deps()
     ]
   end
 
@@ -25,11 +24,12 @@ defmodule Pinboard.MixProject do
       {:floki, "~> 0.20.0"},
       {:httpoison, "~> 1.0"},
       {:bamboo, "~> 1.1"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:timex, "~> 3.1"}
     ]
   end
 
-  defp escript do
-    [main_module: Pinboard]
-  end
+  # defp escript do
+  #   [main_module: Pinboard]
+  # end
 end

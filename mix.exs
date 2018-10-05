@@ -14,7 +14,8 @@ defmodule Pinboard.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :bamboo]
+      extra_applications: [:logger, :bamboo],
+      mod: {Pinboard.Application, []}
     ]
   end
 
@@ -25,7 +26,8 @@ defmodule Pinboard.MixProject do
       {:httpoison, "~> 1.0"},
       {:bamboo, "~> 1.1"},
       {:poison, "~> 3.1"},
-      {:timex, "~> 3.1"}
+      {:timex, "~> 3.1"},
+      {:distillery, "~> 1.5.2"}
     ]
   end
 

@@ -24,6 +24,7 @@ pinboard-*.tar
 
 # Ignore Env Files
 *.env
+.env.docker
 
 # Ignore .vscode
 /.vscode
@@ -41,5 +42,5 @@ erl_crash.dump
 authority-*.tar
 
 mock_data.txt
-
 state.txt
+

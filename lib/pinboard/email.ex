@@ -20,6 +20,7 @@ defmodule Pinboard.Email do
     """
     text <> generate_text(tail)
   end
+
   defp generate_text([]), do: ""
 
   defp generate_html([head|tail]) do

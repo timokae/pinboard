@@ -23,6 +23,10 @@ defmodule Pinboard do
   def schedule_work(state) do
     Process.send_after(self(), :work, state)
   end
+  
+  def get_status do
+    EntryServer.status
+  end
 
   def mock_data do
     {:ok, html} = File.read("mock_data.txt")

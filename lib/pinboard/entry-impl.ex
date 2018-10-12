@@ -2,7 +2,7 @@ defmodule Pinboard.EntryImpl do
   require IEx
   alias Pinboard.{Mailer, Email}
   
-  def send_notification([]), do: :ok
+  def send_notification([], _), do: []
   def send_notification(list, emails) do
     emails
     |> String.split(";")

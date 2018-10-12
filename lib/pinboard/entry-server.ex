@@ -1,6 +1,9 @@
 defmodule Pinboard.EntryServer do
   use GenServer
+  
   alias Pinboard.EntryImpl
+  
+  require Logger
 
   # External
   def start_link(_) do
@@ -8,7 +11,11 @@ defmodule Pinboard.EntryServer do
   end
 
   def check_pinboard do
-    GenServer.cast(__MODULE__, { :check })
+    GenServer.cast(__MODULE__, :check)
+  end
+  
+  def status do
+    GenServer.call(__MODULE__, :status)
   end
 
   # Internal
@@ -17,20 +24,22 @@ defmodule Pinboard.EntryServer do
     { :ok, [] }
   end
 
-  def handle_cast({:check, }, _state) do
+  def handle_cast(:check, state) do
     emails = System.get_env("EMAILS")
     latest = EntryImpl.open_latest("state.txt")
 
-    EntryImpl.fetch_all_entries
+    new_entries = EntryImpl.fetch_all_entries
     |> EntryImpl.filter_new_entries(latest)
     |> EntryImpl.save_latest
     |> EntryImpl.send_notification(emails)
     
-    {:noreply, []}
+    datetime = Timex.local |> Timex.format!("%d.%m.%Y - %H:%M", :strftime)
+    IO.puts "#{datetime} >> #{length(new_entries)} new entries"
+    {:noreply, [%{datetime: datetime, new: new_entries} | state]}
   end
   
-  def bla(list) do
-    IO.puts inspect(list)
+  def handle_call(:status, _from, state) do
+    {:reply, state, state}
   end
 
   def terminate(reason, _) do

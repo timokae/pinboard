@@ -10,8 +10,13 @@ defmodule Pinboard.Application do
     children = [
       # Starts a worker by calling: Sequence.Worker.start_link(arg)
       { Pinboard.EntryServer, []},
-      # { Pinboard, 3_600_000 },
-      { Pinboard, 10_000 },
+      { Pinboard, 3_600_000 },
+      # { Pinboard, 5_000 },
+      Plug.Adapters.Cowboy.child_spec(
+        scheme: :http,
+        plug: Pinboard.Router, 
+        options: [port: 8085]
+      )
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

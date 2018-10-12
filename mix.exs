@@ -27,7 +27,9 @@ defmodule Pinboard.MixProject do
       {:bamboo, "~> 1.1"},
       {:poison, "~> 3.1"},
       {:timex, "~> 3.1"},
-      {:distillery, "~> 1.5.2"}
+      {:distillery, "~> 1.5.2"},
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.5"},
     ]
   end
 

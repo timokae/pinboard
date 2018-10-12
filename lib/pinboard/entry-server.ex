@@ -13,6 +13,7 @@ defmodule Pinboard.EntryServer do
 
   # Internal
   def init(_) do
+    IO.puts "EntryServer started"
     { :ok, [] }
   end
 
@@ -26,6 +27,10 @@ defmodule Pinboard.EntryServer do
     |> EntryImpl.send_notification(emails)
     
     {:noreply, []}
+  end
+  
+  def bla(list) do
+    IO.puts inspect(list)
   end
 
   def terminate(reason, _) do

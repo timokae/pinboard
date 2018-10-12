@@ -10,7 +10,8 @@ defmodule Pinboard.Application do
     children = [
       # Starts a worker by calling: Sequence.Worker.start_link(arg)
       { Pinboard.EntryServer, []},
-      { Pinboard, 3_600_000 },
+      # { Pinboard, 3_600_000 },
+      { Pinboard, 10_000 },
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

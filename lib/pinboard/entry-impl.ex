@@ -1,5 +1,5 @@
 defmodule Pinboard.EntryImpl do
-
+  require IEx
   alias Pinboard.{Mailer, Email}
   
   def send_notification([]), do: :ok
@@ -8,6 +8,8 @@ defmodule Pinboard.EntryImpl do
     |> String.split(";")
     |> Enum.map(&Email.test_mail(&1, list))
     |> Enum.each(&Mailer.deliver_now/1)
+    
+    list
   end
   
   def fetch_all_entries do
@@ -25,12 +27,14 @@ defmodule Pinboard.EntryImpl do
     end
   end
 
+  def save_latest([]), do: []
   def save_latest(list) do
     latest = list
     |> sort_entries_by_date
     |> List.first
 
     encoded_json = Poison.encode!(latest)
+    IO.puts encoded_json
     case File.write("state.txt", encoded_json) do
       {:error, msg} -> IO.inspect(msg)
       _             -> IO.puts("Latest entry saved")

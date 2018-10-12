@@ -31,6 +31,8 @@ ENV REPLACE_OS_VARS=true \
 #Copy and extract .tar.gz Release file from the previous stage
 COPY --from=build /export/ .
 
+RUN chmod a+w /opt/app/lib/tzdata-0.5.19/priv/latest_remote_poll.txt
+
 #Change user
 USER default
 

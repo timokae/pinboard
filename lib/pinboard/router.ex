@@ -10,11 +10,19 @@ defmodule Pinboard.Router do
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width,initial-scale=1'>
         <title>Log</title>
+        <style>
+          ul {
+            list-style-type: none;
+            padding-left: 15px;
+          }
+        </style>
       </head>
     <body>
+      <ul>
   "
 
   @suffix "
+        </ul>
       </body>
     </html>
   "
@@ -40,6 +48,6 @@ defmodule Pinboard.Router do
 
   defp entry_to_string(%{datetime: nil, new: nil}), do: ""
   defp entry_to_string(%{datetime: dt, new: new}) do
-    "#{dt} #{length(new)} new entries\n"
+    "<li>[#{dt}] #{length(new)} new entries</li>"
   end
 end

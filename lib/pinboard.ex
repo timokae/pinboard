@@ -8,6 +8,7 @@ defmodule Pinboard do
 
   def init(state) do
     IO.puts "PinboardServer starte with #{state}"
+    EntryServer.check_pinboard()
     schedule_work(state)
     {:ok, state}
   end

@@ -1,4 +1,8 @@
 defmodule Pinboard.Extractor do
+  def entries (nil) do
+    IO.puts "No HTML passed"
+    []
+  end
   def entries(html) do
     {"table", _, children } = html
     |> Floki.parse
